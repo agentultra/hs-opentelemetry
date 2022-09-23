@@ -96,7 +96,6 @@ test-suite hs-opentelemetry-api-test
   other-modules:
       OpenTelemetry.Trace.SamplerSpec
       OpenTelemetry.Trace.TraceFlagsSpec
-      Paths_hs_opentelemetry_api
   hs-source-dirs:
       test
   default-extensions:
