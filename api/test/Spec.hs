@@ -1,5 +1,8 @@
 {-# LANGUAGE DerivingStrategies #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
+
+module Spec where
+
 import Test.Hspec
 import OpenTelemetry.Attributes (lookupAttribute)
 import OpenTelemetry.Trace.Core
@@ -34,7 +37,7 @@ exceptionTest = do
   spanState <- unsafeReadSpan =<< readIORef spanToCheck
   let ev = V.head $ appendOnlyBoundedCollectionValues $ spanEvents spanState
   eventName ev `shouldBe` "exception"
-  eventAttributes ev `shouldSatisfy` \attrs -> 
+  eventAttributes ev `shouldSatisfy` \attrs ->
     isJust (lookupAttribute attrs "exception.type") &&
     isJust (lookupAttribute attrs "exception.message") &&
     isJust (lookupAttribute attrs "exception.stacktrace")
